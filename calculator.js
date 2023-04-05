@@ -3,6 +3,7 @@ let numberTwo;
 let operator;
 let displayNumber = 0;
 let justEvaluated = false; 
+let result;
 
 const displayScreen = document.querySelector('.screen');
 
@@ -75,6 +76,7 @@ function clear() {
     numberOne = 0;
     numberTwo = 0;
     displayNumber = "";
+    result = undefined;
 }
 
 clearButton.addEventListener('click', clear);
@@ -112,6 +114,9 @@ function chooseOperation(e) {
     displayNumber = "0";
     updateDisplay(displayNumber);
     operator = e.target.textContent;
+    if (result != undefined) {
+        numberOne = result;
+    }
 }
 
 plusButton.addEventListener('click', chooseOperation);
@@ -121,7 +126,8 @@ slashButton.addEventListener('click', chooseOperation);
 
 function evaluate() {
     if (numberOne != undefined && numberTwo != undefined) {
-        displayNumber = operate(Number(numberOne), Number(numberTwo), operator);
+        result = operate(Number(numberOne), Number(numberTwo), operator)
+        displayNumber = result;
         updateDisplay(displayNumber);
         justEvaluated = true;
     }
