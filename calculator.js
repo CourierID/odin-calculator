@@ -2,11 +2,13 @@ let numberOne;
 let numberTwo;
 let operator;
 let displayNumber = 0;
+let justEvaluated = false; 
 
 const displayScreen = document.querySelector('.screen');
 
 //Misc Buttons
 const clearButton = document.querySelector('#clearButton');
+const equalsButton = document.querySelector('#equalsButton');
 
 //Operator Buttons
 const plusButton = document.querySelector('#plusButton');
@@ -43,19 +45,19 @@ function divide(num1, num2) {
     return num1 / num2;
 }
 
-function operate(numberOne, numberTwo, operator) {
+function operate(numOne, numTwo, operator) {
     switch(operator) {
         case "+":
-            return add(numberOne, numberTwo);
+            return add(numOne, numTwo);
             break;
         case "-":
-            return subtract(numberOne, numberTwo);
+            return subtract(numOne, numTwo);
             break;
         case "*":
-            return multiply(numberOne, numberTwo);
+            return multiply(numOne, numTwo);
             break;
         case "/":
-            return divide(numberOne, numberTwo);
+            return divide(numOne, numTwo);
             break;
         default:
             console.log("ERROR");
@@ -83,19 +85,46 @@ function updateNumber(e) {
     if (displayNumber == "0") {
         displayNumber = "";
     }
+    if (justEvaluated == true) {
+        displayNumber = "";
+        justEvaluated = false;
+    }
     displayNumber += e.target.textContent;
-    updateDisplay(displayNumber); 
+    updateDisplay(displayNumber);
+    numberTwo = displayNumber; 
 }
 
-oneButton.addEventListener('click', updateNumber)
-twoButton.addEventListener('click', updateNumber)
-threeButton.addEventListener('click', updateNumber)
-fourButton.addEventListener('click', updateNumber)
-fiveButton.addEventListener('click', updateNumber)
-sixButton.addEventListener('click', updateNumber)
-sevenButton.addEventListener('click', updateNumber)
-eightButton.addEventListener('click', updateNumber)
-nineButton.addEventListener('click', updateNumber)
-zeroButton.addEventListener('click', updateNumber)
+oneButton.addEventListener('click', updateNumber);
+twoButton.addEventListener('click', updateNumber);
+threeButton.addEventListener('click', updateNumber);
+fourButton.addEventListener('click', updateNumber);
+fiveButton.addEventListener('click', updateNumber);
+sixButton.addEventListener('click', updateNumber);
+sevenButton.addEventListener('click', updateNumber);
+eightButton.addEventListener('click', updateNumber);
+nineButton.addEventListener('click', updateNumber);
+zeroButton.addEventListener('click', updateNumber);
 
 
+function chooseOperation(e) {
+    numberOne = numberTwo;
+    numberTwo = "";
+    displayNumber = "0";
+    updateDisplay(displayNumber);
+    operator = e.target.textContent;
+}
+
+plusButton.addEventListener('click', chooseOperation);
+minusButton.addEventListener('click', chooseOperation);
+starButton.addEventListener('click', chooseOperation);
+slashButton.addEventListener('click', chooseOperation);
+
+function evaluate() {
+    if (numberOne != undefined && numberTwo != undefined) {
+        displayNumber = operate(Number(numberOne), Number(numberTwo), operator);
+        updateDisplay(displayNumber);
+        justEvaluated = true;
+    }
+}
+
+equalsButton.addEventListener('click', evaluate);
