@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainContainer {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculatorContainer {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 700px;
+    border: 5px solid black;
+}
+
+.calculatorContainer > * {
+    display: flex;
+    flex: 1;
+    background-color: black;
+    height: 20%;
+}
+
+.screen {
+    font-family: "VT323", "Helvetica", sans-serif;
+    background: white;
+    text-align: right;
+    font-size: 100px;
+    height: 100%;
+    width: 100%;
+}
+
+button {
+    font-family: "VT323", "Helvetica", sans-serif;
+    font-size: 36px;
+}
