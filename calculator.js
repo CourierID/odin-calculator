@@ -21,16 +21,16 @@ function divide(num1, num2) {
 function operate(numberOne, numberTwo, operator) {
     switch(operator) {
         case "+":
-            add(numberOne, numberTwo)
+            return add(numberOne, numberTwo);
             break;
         case "-":
-            subtract(numberOne, numberTwo)
+            return subtract(numberOne, numberTwo);
             break;
         case "*":
-            multiply(numberOne, numberTwo)
+            return multiply(numberOne, numberTwo);
             break;
         case "/":
-            divide(numberOne, numberTwo)
+            return divide(numberOne, numberTwo);
             break;
         default:
             console.log("ERROR");
